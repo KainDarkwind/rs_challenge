@@ -7,18 +7,22 @@ import Teams from "./pages/Teams";
 import Weather from "./pages/Weather";
 import CssBaseline from "@mui/material/CssBaseline";
 import * as serviceWorker from "./serviceWorker";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 ReactDOM.render(
-  <CssBaseline>
-    <Router>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/teams" element={<Teams />} />
-        <Route path="/weather" element={<Weather />} />
-        <Route path="/weather/:id" element={<Weather />} />
-      </Routes>
-    </Router>
-  </CssBaseline>,
+  <Provider store={store}>
+    <CssBaseline>
+      <Router>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/teams" element={<Teams />} />
+          <Route path="/weather" element={<Weather />} />
+          <Route path="/weather/:id" element={<Weather />} />
+        </Routes>
+      </Router>
+    </CssBaseline>
+  </Provider>,
   document.getElementById("root")
 );
 
