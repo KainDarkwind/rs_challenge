@@ -30,6 +30,19 @@ function App() {
         >
           Ask a Question
         </Button>
+        <Button
+          variant="contained"
+          onClick={() => {
+            console.log("clicked the NBA Button");
+          }}
+          target="_blank"
+          href="/teams"
+          size="large"
+          sx={{ m: 2, bgcolor: "#00003C" }}
+          disableElevation
+        >
+          Display NBA Teams
+        </Button>
       </main>
     </div>
   );
