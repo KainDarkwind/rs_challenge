@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import rsLogo from "./logo-with-name.png";
 import "./App.css";
 
@@ -30,19 +31,16 @@ function App() {
         >
           Ask a Question
         </Button>
-        <Button
-          variant="contained"
-          onClick={() => {
-            console.log("clicked the NBA Button");
-          }}
-          target="_blank"
-          href="/teams"
-          size="large"
-          sx={{ m: 2, bgcolor: "#00003C" }}
-          disableElevation
-        >
-          Display NBA Teams
-        </Button>
+        <Link to="/teams">
+          <Button
+            variant="contained"
+            size="large"
+            sx={{ m: 2, bgcolor: "#00003C" }}
+            disableElevation
+          >
+            Display NBA Teams
+          </Button>
+        </Link>
       </main>
     </div>
   );
