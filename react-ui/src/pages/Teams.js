@@ -6,7 +6,12 @@ import { useTeamsQuery } from "../utils/ballDontLieApi";
 
 function Teams() {
   const { data } = useTeamsQuery();
-  const teams = data.data;
+  // Handles error in case of API slow fetch
+  let teams = [];
+  if (data) {
+    teams = data.data;
+  }
+
   console.log(teams);
 
   return (
