@@ -1,10 +1,18 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { useCityQuery } from "../utils/weatherApi";
 import rsLogo from "../logo-with-name.png";
 import "../App.css";
 
 function Weather() {
-  const { id } = useParams();
+  const { city } = useParams();
+  const { data, isSuccess } = useCityQuery(city);
+  // Handles error in case of API slow fetch
+  let weather = {};
+  if (isSuccess) {
+    weather = data;
+  }
+  console.log(weather);
 
   return (
     <div className="App">
@@ -12,7 +20,13 @@ function Weather() {
         <img src={rsLogo} className="App-logo" alt="logo" />
       </header>
       <main>
-        <p>{id}</p>
+        {isSuccess && (
+          <>
+            <p>{weather.location.name}</p>
+            <p>{weather.current.temp_f}</p>
+            <p>{weather.current.condition.text}</p>
+          </>
+        )}
       </main>
     </div>
   );

@@ -11,6 +11,7 @@ function Teams() {
   if (data) {
     teams = data.data;
   }
+  // TODO: Consider handling Utah Jazz's city better.
 
   console.log(teams);
 
@@ -24,7 +25,7 @@ function Teams() {
         <p>Click on a city to see its current weather.</p>
         {teams.map((team) => {
           return (
-            <Link to={`/weather/${team.id}`} key={team.id}>
+            <Link to={`/weather/${team.city}`} key={team.id}>
               <p>{team.full_name}</p>
             </Link>
           );

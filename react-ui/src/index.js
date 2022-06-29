@@ -18,7 +18,7 @@ ReactDOM.render(
           <Route path="/" element={<App />} />
           <Route path="/teams" element={<Teams />} />
           <Route path="/weather" element={<Weather />} />
-          <Route path="/weather/:id" element={<Weather />} />
+          <Route path="/weather/:city" element={<Weather />} />
         </Routes>
       </Router>
     </CssBaseline>
