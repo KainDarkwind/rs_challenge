@@ -9,7 +9,7 @@ import "../App.css";
 
 function Weather() {
   const { city } = useParams();
-  const { data, isSuccess } = useCityQuery(city);
+  const { data, isSuccess, isError } = useCityQuery(city);
   // Handles error in case of API slow fetch
   let weather = {};
   if (isSuccess) {
@@ -25,6 +25,12 @@ function Weather() {
         <img src={rsLogo} className="App-logo" alt="logo" />
       </header>
       <main>
+        {isError && (
+          <p>
+            There was a problem getting the weather. Please reload the page to
+            try again.
+          </p>
+        )}
         {isSuccess && (
           <>
             <Typography variant="h2" align="center">
