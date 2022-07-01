@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const path = require("path");
 const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
@@ -23,14 +24,30 @@ if (!isDev && cluster.isMaster) {
 } else {
   const app = express();
 
+  // Route API requests.
+  // https://stackoverflow.com/a/67650038/6305196
+  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json());
+
+  // TODO: add production url and remove localhost.
+  app.use(function (req, res, next) {
+    // https://enable-cors.org/server_expressjs.html
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+  });
+
+  app.use("/api/v1/weather", require("./api/v1/weather"));
+  // app.get("/api", (req, res) => {
+  //   res.set("Content-Type", "application/json");
+  //   res.send('{"message":"Hello from the custom server!"}');
+  // });
+
   // Priority serve any static files.
   app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
-
-  // Answer API requests.
-  app.get("/api", (req, res) => {
-    res.set("Content-Type", "application/json");
-    res.send('{"message":"Hello from the custom server!"}');
-  });
 
   // All remaining requests return the React app, so it can handle routing.
   app.get("*", (request, response) => {

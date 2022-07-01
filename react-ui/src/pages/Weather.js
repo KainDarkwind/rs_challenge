@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { useCityQuery } from "../utils/weatherApi";
+// import { useCityQuery } from "../utils/weatherApi";
+import { useWeatherQuery } from "../utils/realSynchApi";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import Header from "../components/Header";
 import "../App.css";
@@ -9,7 +10,7 @@ import "../App.css";
 
 function Weather() {
   const { city } = useParams();
-  const { data, isSuccess, isError } = useCityQuery(city);
+  const { data, isSuccess, isError } = useWeatherQuery(city);
   // Handles error in case of API slow fetch
   let weather = {};
   if (isSuccess) {
