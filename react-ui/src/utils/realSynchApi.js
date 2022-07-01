@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// Define a service using a base URL and expected endpoints
+// This is an API endpoint builder function.
 export const realSynchApi = createApi({
   reducerPath: "realSynchApi",
   baseQuery: fetchBaseQuery({

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-// import { useCityQuery } from "../utils/weatherApi";
 import { useWeatherQuery } from "../utils/realSynchApi";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import Header from "../components/Header";
@@ -9,8 +8,9 @@ import "../App.css";
 // The Weather page is accessed by clicking a team on the Teams page.  It will display the data obtained from the weatherAPI, in a friendly paragraph format.
 
 function Weather() {
-  const { city } = useParams();
-  const { data, isSuccess, isError } = useWeatherQuery(city);
+  const { city } = useParams(); // Gets city parameter from url.
+  const { data, isSuccess, isError } = useWeatherQuery(city); // Runs function and pulls out data, isSuccess, isError. The function builds an API endpoints and queries it.
+
   // Handles error in case of API slow fetch
   let weather = {};
   if (isSuccess) {

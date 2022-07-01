@@ -40,6 +40,7 @@ if (!isDev && cluster.isMaster) {
     next();
   });
 
+  // All requests to api/v1/weather will use the /api/v1/weather file
   app.use("/api/v1/weather", require("./api/v1/weather"));
   // app.get("/api", (req, res) => {
   //   res.set("Content-Type", "application/json");
