@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import rsLogo from "../logo-with-name.png";
+import { Box, Grid, Typography } from "@mui/material";
 import "../App.css";
+import Header from "../components/Header";
 import { useTeamsQuery } from "../utils/ballDontLieApi";
 
 function Teams() {
@@ -17,28 +18,33 @@ function Teams() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={rsLogo} className="App-logo" alt="logo" />
-      </header>
+      <Header />
       <main>
         {isError && (
-          <p>
-            There was a problem getting the NBA teams. Please reload the page to
-            try again.
-          </p>
+          <Typography variant="body1">
+            {`There was a problem getting the NBA teams. Please reload the page to try again.`}
+          </Typography>
         )}
         {isSuccess && (
-          <>
-            <h1>Cities of NBA Teams</h1>
-            <p>Click on a city to see its current weather.</p>
-            {teams.map((team) => {
-              return (
-                <Link to={`/weather/${team.city}`} key={team.id}>
-                  <p>{team.full_name}</p>
-                </Link>
-              );
-            })}
-          </>
+          <Box m={3}>
+            <Typography variant="h2">{"NBA Teams"}</Typography>
+            <Typography mb={6} variant="body1" gutterBottom>
+              {`Click on a city to see its current weather.`}
+            </Typography>
+            <Grid container spacing={2}>
+              <Grid item md={8}>
+                {teams.map((team) => {
+                  return (
+                    <Link to={`/weather/${team.city}`} key={team.id}>
+                      <Typography variant="body1" gutterBottom>
+                        {team.full_name}
+                      </Typography>
+                    </Link>
+                  );
+                })}
+              </Grid>
+            </Grid>
+          </Box>
         )}
       </main>
     </div>

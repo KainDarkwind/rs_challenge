@@ -1,15 +1,13 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import rsLogo from "./logo-with-name.png";
+import Header from "./components/Header";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={rsLogo} className="App-logo" alt="logo" />
-      </header>
+      <Header />
       <main>
         <Button
           variant="contained"
