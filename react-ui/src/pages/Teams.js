@@ -12,7 +12,7 @@ function Teams() {
   if (data) {
     teams = data.data;
   }
-  // TODO: Consider handling Utah Jazz's city better.
+  // TODO: Handle Utah Jazz's city better.
 
   console.log(teams);
 
